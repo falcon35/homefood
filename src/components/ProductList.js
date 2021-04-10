@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import {Card,CardImg,CardImgOverlay,CardText,CardTitle} from 'reactstrap'
+import {Card,CardImg,CardImgOverlay,CardTitle} from 'reactstrap'
+import ProductDetail from './ProductDetail'
 
 export default class ProductList extends Component {
     constructor(props) {
@@ -13,21 +14,7 @@ export default class ProductList extends Component {
             selectedFood:food
         })
     }
-    renderFood(food){
-       if(food!=null){
-       return(
-           <Card>
-            <CardImg top width="100%" src={food.img}/>
-            <CardTitle><b>{food.name.toUpperCase()}</b></CardTitle>
-            <CardText><p>{food.description}</p></CardText>
-            <CardText><b>{food.price} USD</b></CardText>
-           </Card>
-       )
-            } else{
-                <div></div>
-            }
-        
-    }
+   
     render() {
         const productlist=this.props.foods.map(food=>{
             return(
@@ -37,7 +24,6 @@ export default class ProductList extends Component {
                <CardImgOverlay>
                    <CardTitle><b>{food.name.toUpperCase()}</b></CardTitle>
                </CardImgOverlay>
-            <CardText><p>{food.description}</p></CardText>
            </Card>  
         </div>
             )
@@ -48,8 +34,8 @@ export default class ProductList extends Component {
                 {productlist}
             </div>
             <div className="row">
-            <div className="col-12">
-            {this.renderFood(this.state.selectedFood)}
+            <div className="col-12 col-md-5 m-1">
+                <ProductDetail selectedFood={this.state.selectedFood} />
             </div>
             </div>
             </div>
